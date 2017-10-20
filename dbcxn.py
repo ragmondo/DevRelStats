@@ -1,17 +1,38 @@
 import pyodbc
 import secrets
 
-cxn_string = "DSN=AzureSQL;UID=rich@rich;PWD=" +secrets.DB_PASSWORD
+import datetime
 
-conn = pyodbc.connect(cxn_string)
+def create_table(cxn):
+    sql = """create table dev_rel_stats ( dt smalldatetime, k varchar(255), v bigint)"""
+    return sql
 
-print conn
+def insert_update(cxn, dt, k, v ):
 
-cur = conn.cursor()
+    sql = """
+    if exists (select * from dev_rel_stats where dt = ? and k = ?)
+    begin 
+        update dev_rel_stats set v = ? where dt = ? and k = ?
+    end
+    else
+    begin
+        insert into dev_rel_stats values (?, ? , ?)
+    end
+    """
 
-# cur.execute("create table ")
+    cxn.execute(sql, (dt,k,v,dt,k,dt,k,v))
+    cxn.commit()
+
+def get_cxn():
+    cxn_string = "DSN=AzureSQL;DATABASE=dev_rel_stats;UID=rich@rich;PWD=" +secrets.DB_PASSWORD
+    conn = pyodbc.connect(cxn_string)
+    return conn
 
 
+if __name__ == "__main__":
+    cxn_string = "DSN=AzureSQL;DATABASE=dev_rel_stats;UID=rich@rich;PWD=" +secrets.DB_PASSWORD
 
+    conn = pyodbc.connect(cxn_string)
 
+    print conn
 

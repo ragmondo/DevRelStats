@@ -10,7 +10,7 @@ class DiscourseStats(DevRelStats):
         try:
             from pydiscourse import DiscourseClient
         except ImportError as ie:
-            print "pip install pydiscourse"
+            print "--> pip install pydiscourse <--"
             raise  ie
         client = DiscourseClient(
             'https://discourse.corda.net',

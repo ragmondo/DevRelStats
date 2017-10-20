@@ -8,7 +8,9 @@ from slack_stats import SlackStats
 import datetime
 
 import pyodbc
+import secrets
 
+from dbcxn import insert_update, get_cxn
 
 
 if __name__ == "__main__":
@@ -21,15 +23,27 @@ if __name__ == "__main__":
         SlackStats()
     ]
 
-    all_stats = {"date": datetime.date.today()}
+    all_stats = dict()
 
     for stat in stats:
         try:
-
             all_stats.update(stat.run())
         except Exception as e:
             print "Something went wrong for ", stat
             print e
 
     print all_stats
+
+    cxn = get_cxn()
+
+    today = datetime.date.today()
+
+    for k in all_stats:
+        insert_update(cxn, today, k, all_stats[k])
+
+
+
+
+
+
 
