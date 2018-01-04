@@ -5,20 +5,28 @@ import meetup.api
 client = meetup.api.Client(secrets.MEETUP_API_KEY)
 
 corda_groups =  """
-Frankfurt-Corda-Meetup
 London-Corda-Meetup
-Taipei-Corda-Meetup
-Sydney-Corda-Meetup
-Tokyo-Corda-Meetup
+Frankfurt-Corda-Meetup
 Seoul-Corda-Meetup
 Shanghai-Corda-Meetup
-Toronto-Corda-Meetup
-R3-Corda-Hong-Kong-Meetup
-meetup-group-idbpbQbt
-New-York-Corda-Meetup
 Hong-Kong-Corda-Meetup
-Corda-Blockchain-DistributedLedger-Meetup
+Taipei-Corda-Meetup
+Tokyo-Corda-Meetup
+Singapore-Corda-Meetup
+Sydney-Corda-Meetup
+Beijing-Corda-Meetup
+meetup-group-idbpbQbt
+CORDA-Meetup-Italy
+New-York-Corda-Meetup
+Dallas-Fort-Worth-Corda-Meetup
+CORDA-Meetup-Poland
+Unofficial-London-Corda-Meetup
+Corda-Ledger-Toronto
+Blockchain-Ethereum-Corda-ledger-meetup-Hyderabad
+Ethereum-Cordaledger-meetup
 meetup-group-vZKHkgqV
+Blockchain-Ethereum-Corda-ledger-meetup-Delhi-NCR
+Bangalore-Ethereum-Blockchain-Meetup
 """.lstrip().rstrip().split('\n')
 
 from parent import DevRelStats
