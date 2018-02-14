@@ -4,6 +4,7 @@ from meetup_stats import MeetupStats
 from stackoverflow_stats import StackoverflowStats
 from vimeo_stats import VimeoStats
 from slack_stats import SlackStats
+from twitter_stats import TwitterStats
 
 import datetime
 
@@ -15,12 +16,13 @@ from dbcxn import insert_update, get_cxn
 
 if __name__ == "__main__":
     stats = [
-        DiscourseStats(),
+      #  DiscourseStats(),
         StackoverflowStats(),
         VimeoStats(),
         MeetupStats(),
         GithubStats(),
-        SlackStats()
+        SlackStats(),
+        TwitterStats()
     ]
 
     all_stats = dict()

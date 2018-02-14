@@ -13,3 +13,5 @@ class StackoverflowStats(DevRelStats):
         return {"stackoverflow_corda_questions": corda.count}
 
 
+if __name__ == "__main__":
+    print StackoverflowStats().run()
