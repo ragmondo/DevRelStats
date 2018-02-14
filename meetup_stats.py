@@ -24,7 +24,6 @@ Unofficial-London-Corda-Meetup
 Corda-Ledger-Toronto
 Blockchain-Ethereum-Corda-ledger-meetup-Hyderabad
 Ethereum-Cordaledger-meetup
-meetup-group-vZKHkgqV
 Blockchain-Ethereum-Corda-ledger-meetup-Delhi-NCR
 Bangalore-Ethereum-Blockchain-Meetup
 """.lstrip().rstrip().split('\n')
@@ -45,9 +44,12 @@ class MeetupStats(DevRelStats):
         total = 0
 
         for g in corda_groups:
-            group = client.GetGroup({'urlname':g})
+            try:
+                group = client.GetGroup({'urlname':g})
             #            print group.name, group.members
-            total = total + group.members
+                total = total + group.members
+            except meetup.exceptions.HttpNotFoundError:
+                pass
 
         return {"meetup_total_members": total}
 
